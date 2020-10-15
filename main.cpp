@@ -58,7 +58,7 @@ std::vector<size_t> filter(std::vector<size_t>& positions,uint32_t range){
     std::vector<size_t> result;
     for (size_t i = 0; i < positions.size(); i++) {
         if (isValidFromBack(i,positions,range) || isValidFromFront(i,positions,range))
-            result.push_back(positions[i]);
+            result.push_back(positions[i]+1);
     }
     return result;
 }
@@ -88,5 +88,9 @@ int main(int argc, char* argv[]) {
         prevFilePosition = inputFile.tellg();
     }
 
+    positions = filter(positions,arguments.n);
+    for (auto pos : positions){
+        std::cout << pos << "\n";
+    }
     return 0;
 }
